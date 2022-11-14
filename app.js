@@ -5,8 +5,7 @@ class Clock extends React.Component{
         this.state = {
             break: 5,
             session: 25,
-            count: false,
-            reset: false
+            count: false
         };
         this.breakDecrement = this.breakDecrement.bind(this)
         this.breakIncrement = this.breakIncrement.bind(this)
@@ -51,8 +50,7 @@ class Clock extends React.Component{
         this.setState({
             break: 5,
             session: 25,
-            count: false,
-            reset: true
+            count: false
         })
        /* let timeLeft = document.getElementById("time-left")
         let minuteDisplay;
