@@ -5,27 +5,33 @@ class Clock extends React.Component{
         this.state = {
             break: 5,
             session: 25,
+            minute: 25,
+            second: 0,
+            playing: "Session",
             count: false
         };
         this.breakDecrement = this.breakDecrement.bind(this)
         this.breakIncrement = this.breakIncrement.bind(this)
         this.sessionDecrement = this.sessionDecrement.bind(this)
         this.sessionIncrement = this.sessionIncrement.bind(this)
-        this.startStop = this.startStop.bind(this)
-        this.reset = this.reset.bind(this)        
+        this.reset = this.reset.bind(this)     
+        this.start = this.start.bind(this)   
+        this.stop = this.stop.bind(this)
     }
     
     breakIncrement() {
         if (this.state.break < 60) {
             this.setState({
-                break: this.state.break + 1
+                break: this.state.break + 1,
+                minute: this.state.minute + 1
             })
         }
     }
     breakDecrement() {
         if (this.state.break > 1) {
             this.setState({
-                break: this.state.break - 1
+                break: this.state.break - 1,
+                minute: this.state.minute - 1
             })
         }
     }
@@ -33,14 +39,16 @@ class Clock extends React.Component{
     sessionIncrement() {
         if (this.state.session < 60) {
             this.setState({
-                session: this.state.session + 1
+                session: this.state.session + 1,
+                minute: this.state.minute + 1
             })
         }       
     }
     sessionDecrement() {
         if (this.state.session > 1) {
             this.setState({
-                session: this.state.session - 1
+                session: this.state.session - 1,
+                minute: this.state.minute - 1
             })
         }
     }
@@ -50,53 +58,41 @@ class Clock extends React.Component{
         this.setState({
             break: 5,
             session: 25,
+            minute: 25,
+            second: 0,
+            playing: "Session",
             count: false
         })
-       /* let timeLeft = document.getElementById("time-left")
-        let minuteDisplay;
-        if (this.state.session < "10" || this.state.session === "0") {
-            timeLeft.innerHTML = "0" + this.state.session + ":" + "00";
-        } else {
-            timeLeft.innerHTML = this.state.session+ ":" + "00";
-        }  
-        
-        console.log("reset");
-        */
     }
-
-    startStop() {
+    
+    start() {
         if(!this.state.count) {
             this.setState({
                 count: true
-            });
-            let minuteToSecond = this.state.session * 60000;
-            let countDownDate = new Date().getTime() + minuteToSecond;
-            counting = setInterval(function() {
-                let now = new Date().getTime();    
-                let distance = countDownDate - now;    
-                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                if (minutes < 10) {
-                    minutes = "0" + minutes;
-                }
-                if (seconds < 10) {
-                    seconds = "0" + seconds;
-                }
-                if (minutes === "00" && seconds === "00") {
-                    clearInterval(counting);
-                }
-                document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
-            }, 1000);
+            });            
+            counting = setInterval(() => {
+                this.setState({
+                    second : this.state.second - 1
+                });      
+            },1000);     
         } else {
-            this.setState({
-                count: false
-            });
-            clearInterval(counting);
-        }
+            this.stop();
+        }     
+    }
+    stop() {
+        this.setState({
+            count: false
+        });
+        clearInterval(counting);
     }
 
     render() {
-        
+        if (this.state.second < 0 && this.state.minute > 0) {
+            this.setState({
+                second: 59,
+                minute: this.state.minute - 1
+            });
+        }        
         return (
             <div>
                 <div id="break-label">Break Length</div>
@@ -115,12 +111,15 @@ class Clock extends React.Component{
                 </button>
                 <div id="break-length">{this.state.break}</div>
                 <div id="session-length">{this.state.session}</div>
-                <div id="timer-label">Session</div>
+                <div id="timer-label">{this.state.playing}</div>
                 <div id="time-left">{
-                    this.state.session < "10"? "0" + this.state.session:
-                    this.state.session === "0"? "0" + this.state.session: this.state.session
-                }:00</div>
-                <button id="start_stop" onClick={this.startStop}>start_stop</button>
+                    this.state.minute < "10"? "0" + this.state.minute:
+                    this.state.minute <= "0"? "00": this.state.minute
+                }:{
+                    this.state.second < "10"? "0" + this.state.second:
+                    this.state.second <= "0"? "00": this.state.second
+                }</div>
+                <button id="start_stop" onClick={this.start}>start_stop</button>
                 <button id="reset" onClick={this.reset}>reset</button>
             </div>
         )
