@@ -23,53 +23,52 @@ class Clock extends React.Component{
         if (this.state.break > 1) {
             this.setState({
                 break: this.state.break - 1
-            })
-        }
+            });
+        };
         if (!this.state.playing && this.state.minute > 1) {
             this.setState({
                 minute: this.state.minute - 1
-            })
-        }
+            });
+        };
     }
     breakIncrement() {
         if (this.state.break < 60) {
             this.setState({
                 break: this.state.break + 1
-            })
-        }
+            });
+        };
         if (!this.state.playing && this.state.minute > 1) {
             this.setState({
                 minute: this.state.minute + 1
-            })
-        }
+            });
+        };
     }
 
     sessionDecrement() {
         if (this.state.session > 1) {
             this.setState({
                 session: this.state.session - 1
-            })
-        }
+            });
+        };
         if (this.state.playing && this.state.minute > 1) {
             this.setState({
                 minute: this.state.minute - 1
-            })
-        }
+            });
+        };
     }
     sessionIncrement() {
         if (this.state.session < 60) {
             this.setState({
                 session: this.state.session + 1
-            })
-        }      
+            });
+        };     
         if (this.state.playing && this.state.minute > 1) {
             this.setState({
                 minute: this.state.minute + 1
-            })
-        }
+            });
+        };
     }
     
-
     reset() {
         clearInterval(counting);
         this.setState({
@@ -79,7 +78,10 @@ class Clock extends React.Component{
             second: 0,
             playing: "Session",
             count: false
-        })
+        });
+        let alarm = document.getElementById("beep");
+        alarm.pause();
+        alarm.currentTime = 0;
     }
     
     start() {
@@ -109,8 +111,10 @@ class Clock extends React.Component{
                 second: 59,
                 minute: this.state.minute - 1
             });
-        }  
+        }; 
         if (this.state.minute === 0 && this.state.second === -1) {
+            let alarm = document.getElementById("beep");
+            alarm.play();
             if(this.state.playing === "Session") {
                 this.setState({
                     second: 0,
@@ -123,8 +127,8 @@ class Clock extends React.Component{
                     minute: this.state.session,
                     playing: "Session"
                 });
-            }
-        } 
+            };
+        }; 
         return (
             <div>
                 <div id="break-label">Break Length</div>
@@ -146,13 +150,16 @@ class Clock extends React.Component{
                 <div id="timer-label">{this.state.playing}</div>
                 <div id="time-left">{
                     this.state.minute < "10"? "0" + this.state.minute:
-                    this.state.minute <= "0"? "00": this.state.minute
+                    this.state.minute <= "0"? "00": 
+                    this.state.minute
                 }:{
                     this.state.second < "10"? "0" + this.state.second:
-                    this.state.second <= "0"? "00": this.state.second
+                    this.state.second <= "0"? "00": 
+                    this.state.second
                 }</div>
                 <button id="start_stop" onClick={this.start}>start_stop</button>
                 <button id="reset" onClick={this.reset}>reset</button>
+                <audio src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" id="beep"></audio>
             </div>
         )
     }
