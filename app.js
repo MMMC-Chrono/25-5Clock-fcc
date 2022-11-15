@@ -149,12 +149,12 @@ class Clock extends React.Component{
                 <div id="session-length">{this.state.session}</div>
                 <div id="timer-label">{this.state.playing}</div>
                 <div id="time-left">{
-                    this.state.minute < "10"? "0" + this.state.minute:
-                    this.state.minute <= "0"? "00": 
+                    this.state.minute < "10"? "0" + this.state.minute :
+                    this.state.minute <= "0"? "00" : 
                     this.state.minute
                 }:{
-                    this.state.second < "10"? "0" + this.state.second:
-                    this.state.second <= "0"? "00": 
+                    this.state.second < "10"? "0" + this.state.second :
+                    this.state.second <= "0"? "00" : 
                     this.state.second
                 }</div>
                 <button id="start_stop" onClick={this.start}>
@@ -165,7 +165,7 @@ class Clock extends React.Component{
                 <button id="reset" onClick={this.reset}>
                     <i class="fa-solid fa-rotate"></i>
                 </button>
-                <audio src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" id="beep"></audio>
+                <audio id="beep" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"></audio>
             </div>
         )
     }
