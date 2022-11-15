@@ -18,40 +18,57 @@ class Clock extends React.Component{
         this.start = this.start.bind(this)   
         this.stop = this.stop.bind(this)
     }
-    
-    breakIncrement() {
-        if (this.state.break < 60) {
-            this.setState({
-                break: this.state.break + 1,
-                minute: this.state.minute + 1
-            })
-        }
-    }
+
     breakDecrement() {
         if (this.state.break > 1) {
             this.setState({
-                break: this.state.break - 1,
+                break: this.state.break - 1
+            })
+        }
+        if (!this.state.playing && this.state.minute > 1) {
+            this.setState({
                 minute: this.state.minute - 1
+            })
+        }
+    }
+    breakIncrement() {
+        if (this.state.break < 60) {
+            this.setState({
+                break: this.state.break + 1
+            })
+        }
+        if (!this.state.playing && this.state.minute > 1) {
+            this.setState({
+                minute: this.state.minute + 1
             })
         }
     }
 
-    sessionIncrement() {
-        if (this.state.session < 60) {
-            this.setState({
-                session: this.state.session + 1,
-                minute: this.state.minute + 1
-            })
-        }       
-    }
     sessionDecrement() {
         if (this.state.session > 1) {
             this.setState({
-                session: this.state.session - 1,
+                session: this.state.session - 1
+            })
+        }
+        if (this.state.playing && this.state.minute > 1) {
+            this.setState({
                 minute: this.state.minute - 1
             })
         }
     }
+    sessionIncrement() {
+        if (this.state.session < 60) {
+            this.setState({
+                session: this.state.session + 1
+            })
+        }      
+        if (this.state.playing && this.state.minute > 1) {
+            this.setState({
+                minute: this.state.minute + 1
+            })
+        }
+    }
+    
 
     reset() {
         clearInterval(counting);
@@ -87,12 +104,27 @@ class Clock extends React.Component{
     }
 
     render() {
-        if (this.state.second < 0 && this.state.minute > 0) {
+        if (this.state.minute > 0 && this.state.second < 0) {
             this.setState({
                 second: 59,
                 minute: this.state.minute - 1
             });
-        }        
+        }  
+        if (this.state.minute === 0 && this.state.second === -1) {
+            if(this.state.playing === "Session") {
+                this.setState({
+                    second: 0,
+                    minute: this.state.break,
+                    playing: "Break"
+                });
+            } else {
+                this.setState({
+                    second: 0,
+                    minute: this.state.session,
+                    playing: "Session"
+                });
+            }
+        } 
         return (
             <div>
                 <div id="break-label">Break Length</div>
