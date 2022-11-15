@@ -12,30 +12,29 @@ body {
     --dark-gray: rgb(145, 145, 145);
 }
 #clock {
-    background: white;
     position: relative;
-    margin: auto;
+    background: white;
+    color: var(--dark-gray);
     bottom: -170px;
     width: 350px;
     height: 260px;
+    margin: auto;
     padding: 10px 0;
-    text-align: center;
-    font-family: "Microsoft Sans Serif";
-    color: var(--dark-gray);
-    font-size: 25px;
     border-radius: 10px;
     box-shadow: 1px 5px 5px 5px var(--dark-gray);
+    font-family: "Microsoft Sans Serif";
+    font-size: 25px;  
+    text-align: center;
 }
 #logo {
-    font-family: 'Brush Script Std';
-    font-weight: bold;
     position: relative;
     background: -webkit-linear-gradient(70deg, var(--gray) 45%, rgb(231, 231, 231) 47%, var(--gray) 55%, var(--gray) 75%);
     -webkit-background-clip: text;
     background-clip: none;
     -webkit-text-fill-color: transparent;
+    font-family: 'Brush Script Std';
+    font-weight: bold;
     font-size: 23px;
-    z-index: 5;
 }
 #line {
     position: absolute;
@@ -45,45 +44,47 @@ body {
     margin: 0 1px;
     box-shadow: 1px 1px 1px 1px var(--light-gray);
 }
+/*break and session start*/
+.plus-minus {
+    display: inline-flex;
+}
 #break {
     position: absolute;
     width: 50%;
-    font-size: 17px;
     top: 50px;
+    font-size: 17px;
 }
 #session {
     position: absolute;
+    top: 50px;
     left: 50%;
     width: 50%;
     font-size: 17px;
-    top: 50px;
 }
 #break-length, #session-length {
     position: relative;
-    top: 5px;
     background: whitesmoke;
+    top: 5px;
     width: 45px;
     height: 25px;
     padding-top: 1px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px 0px var(--light-gray);
     font-family: "Graduate";
     font-weight: bold;
     font-size: 20px;
-    border-radius: 3px;
-    box-shadow: 0px 1px 2px 0px var(--light-gray);
-}
-.plus-minus {
-    display: inline-flex;
 }
 .plus-minus button {
     position: relative;
     top: 0px;
     width: 25px;
     height: 25px;
+    margin: 5px;    
     border: none;
     border-radius: 50%;
-    margin: 5px;    
     box-shadow: 0px 1px 3px 0px var(--gray);
 }
+/*break and session end*/
 #playing {
     position: relative;
     top: 75px;
@@ -95,45 +96,44 @@ body {
 #timer-label {
     background: whitesmoke;
     width: 170px;
-    margin: auto;
     height: 35px;
     padding-top: 3px;
+    margin: auto;
 }
 #time-left {
     background: whitesmoke;
     width: 150px;
-    margin: auto;
     height: 45px;
+    padding-top: 7px;
+    margin: auto;
+    margin-top: 10px;
     font-family: "Graduate";
     font-weight: bold;
     font-size: 30px;
-    margin-top: 10px;
-    padding-top: 7px;
 }
 #playing button {
-    border: none;
     position: relative;
     width: 60px;
     height: 35px;
-    margin: 10px;
     padding-left: 7px;
+    margin: 10px;
+    border: none;
     border-radius: 20px;
     box-shadow: 0px 2px 3px 1px var(--gray);
 }
-
 button:hover {
     background: rgb(228, 228, 228);
 }
 button:active {
     top: 2px;
 }
-
+/*footer start*/
 footer {
-    color: var(--dark-gray);
-    position: relative;
     display: flex;
     justify-content: center;
     text-align: center;
+    position: relative;
+    color: var(--dark-gray);
     bottom: -200px;
 }
 #gmail {
@@ -143,3 +143,4 @@ footer {
 #gmail:hover {
     color: rgb(97, 97, 97);
 }
+/*footer end*/
