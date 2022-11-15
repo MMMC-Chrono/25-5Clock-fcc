@@ -157,8 +157,14 @@ class Clock extends React.Component{
                     this.state.second <= "0"? "00": 
                     this.state.second
                 }</div>
-                <button id="start_stop" onClick={this.start}>start_stop</button>
-                <button id="reset" onClick={this.reset}>reset</button>
+                <button id="start_stop" onClick={this.start}>
+                    {this.state.count? 
+                    <i className="fa-regular fa-circle-pause"></i> : 
+                    <i className="fa-regular fa-circle-play"></i>}
+                </button>
+                <button id="reset" onClick={this.reset}>
+                    <i class="fa-solid fa-rotate"></i>
+                </button>
                 <audio src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" id="beep"></audio>
             </div>
         )
