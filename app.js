@@ -132,6 +132,7 @@ class Clock extends React.Component{
         return (
             <div>
                 <div id="logo">freeCodeCamp</div>
+                <div id="line"></div>
                 <div id="break">
                     <div id="break-label">Break Length</div>
                     <div className="plus-minus">
