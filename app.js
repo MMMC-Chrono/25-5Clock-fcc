@@ -131,41 +131,58 @@ class Clock extends React.Component{
         }; 
         return (
             <div>
-                <div id="break-label">Break Length</div>
-                <button id="break-decrement" onClick={this.breakDecrement} >
-                    <i className="fa-solid fa-minus"></i>
-                </button>
-                <button id="break-increment" onClick={this.breakIncrement} >
-                    <i className="fa-solid fa-plus"></i>
-                </button>
-                <div id="session-label">Session Length</div>
-                <button id="session-decrement" onClick={this.sessionDecrement} >
-                    <i className="fa-solid fa-minus"></i>
-                </button>
-                <button id="session-increment" onClick={this.sessionIncrement} >
-                    <i className="fa-solid fa-plus"></i>
-                </button>
-                <div id="break-length">{this.state.break}</div>
-                <div id="session-length">{this.state.session}</div>
-                <div id="timer-label">{this.state.playing}</div>
-                <div id="time-left">{
-                    this.state.minute < "10"? "0" + this.state.minute :
-                    this.state.minute <= "0"? "00" : 
-                    this.state.minute
-                }:{
-                    this.state.second < "10"? "0" + this.state.second :
-                    this.state.second <= "0"? "00" : 
-                    this.state.second
-                }</div>
-                <button id="start_stop" onClick={this.start}>
-                    {this.state.count? 
-                    <i className="fa-regular fa-circle-pause"></i> : 
-                    <i className="fa-regular fa-circle-play"></i>}
-                </button>
-                <button id="reset" onClick={this.reset}>
-                    <i class="fa-solid fa-rotate"></i>
-                </button>
-                <audio id="beep" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"></audio>
+                <div id="logo">freeCodeCamp</div>
+                <div id="break">
+                    <div id="break-label">Break Length</div>
+                    <div className="plus-minus">
+                        <button id="break-decrement" onClick={this.breakDecrement} >
+                            <i className="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div id="break-length">{this.state.break}</div>
+                        <button id="break-increment" onClick={this.breakIncrement} >
+                            <i className="fa-solid fa-caret-up"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="session">
+                    <div id="session-label">Session Length</div>
+                    <div className="plus-minus">
+                        <button id="session-decrement" onClick={this.sessionDecrement} >
+                            <i class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div id="session-length">{this.state.session}</div>
+                        <button id="session-increment" onClick={this.sessionIncrement} >
+                            <i className="fa-solid fa-caret-up"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="playing">
+                    <div id="timer-label">{this.state.playing}</div>
+                    <div id="time-left">
+                        {
+                        this.state.minute < "10"? "0" + this.state.minute :
+                        this.state.minute <= "0"? "00" : 
+                        this.state.minute
+                        }:{
+                        this.state.second < "10"? "0" + this.state.second :
+                        this.state.second <= "0"? "00" : 
+                        this.state.second}
+                    </div>
+                    <button id="start_stop" onClick={this.start}>
+                        {
+                        this.state.count? 
+                        <i className="fa-solid fa-pause"></i> : 
+                        <i className="fa-solid fa-play"></i>
+                        }
+                    </button>
+                    <button id="reset" onClick={this.reset}>
+                        <i class="fa-solid fa-rotate"></i>
+                    </button>
+                    <audio id="beep" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"></audio>
+                </div>
+                
             </div>
         )
     }
