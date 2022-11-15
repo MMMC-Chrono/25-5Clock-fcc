@@ -126,3 +126,19 @@ button:hover {
 button:active {
     top: 2px;
 }
+
+footer {
+    color: var(--dark-gray);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    bottom: -200px;
+}
+#gmail {
+    color: gray;
+    cursor: pointer;
+}
+#gmail:hover {
+    color: rgb(97, 97, 97);
+}
