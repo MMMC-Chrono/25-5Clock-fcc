@@ -64,6 +64,7 @@ body {
     background: whitesmoke;
     width: 45px;
     height: 25px;
+    padding-top: 1px;
     font-family: "Graduate";
     font-weight: bold;
     font-size: 20px;
@@ -107,7 +108,7 @@ body {
     font-weight: bold;
     font-size: 30px;
     margin-top: 10px;
-    padding-top: 5px;
+    padding-top: 7px;
 }
 #playing button {
     border: none;
